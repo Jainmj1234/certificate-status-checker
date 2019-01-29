@@ -1,6 +1,35 @@
-//<link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="script.js"></script>
-//<script src="js/bootstrap.min.js"></script></script>
-//<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-//<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-//<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+
+
+      $('#login').submit(function(e){
+        e.preventDefault();
+
+
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+
+        $.ajax({
+            type: "POST",
+            url: "submit.php",
+            dataType: "json",
+            data: {username:username, password:password },
+            success : function(data){
+                if (data.code == "200"){
+                    sresult="Dear " + username + " <br>Your Certificate Status is ...";
+                    document.getElementById("statusContent").innerHTML=sresult;
+                } else {
+                    $(".display-error").html("<ul>"+data.msg+"</ul>");
+                    $(".display-error").css("display","block");
+                    result="Check your Username or Password";
+                    document.getElementById("statusContent").innerHTML=result;
+                }
+            }
+        });
+
+
+      });
+  });
+</script>
