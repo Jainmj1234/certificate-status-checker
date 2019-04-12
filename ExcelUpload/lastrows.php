@@ -1,0 +1,85 @@
+
+<html>
+ <head>
+  <title>Import Excel to Mysql using PHPExcel in PHP</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+  body
+  {
+   margin:0;
+   padding:0;
+   background-color:#f1f1f1;
+  }
+  .box
+  {
+   width:700px;
+   border:1px solid #ccc;
+   background-color:#fff;
+   border-radius:5px;
+   margin-top:100px;
+  }
+  
+  </style>
+ </head>
+ <body>
+  <div class="container box">
+  <table class='table table-bordered'>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Register No.</th>
+                      <th>Class</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+           <?php
+            include("connect.php");
+             $id=$_GET['id'];
+             $sql = "SELECT * FROM stdata WHERE `id`>'". $id ."';";
+             $result = $conn->query($sql);
+             if ($result->num_rows > 0) {
+             while($row = $result->fetch_assoc()) {
+                if($row["name"] !="" && $row["regno"] != "" && $row["name"] != "Name"){
+                 echo "<tr>
+                      <td>" . $row["name"]. "  <a href='moredetail.php?id=".$row["id"]."' alt='edit'>(View Details)</a></td>
+                      <td>" . $row["regno"]. "</td>
+                      <td>" . $row["class"]. "</td>";
+                      if ($row['status'] != 1) {
+                          echo "<td><input type='submit' id='submit' data-id=" .$row["id"]. " class='btn btn-danger btn-block' value='Not Issued'></input></td>";
+                          }
+                      else{
+                     echo "<td><input type='submit'  data-id=" .$row["id"]. " id='submit' class='btn btn-primary btn-block' value='Issued'></input></td>"; 
+                          }
+                          }
+          
+
+                    ;}}
+
+                    $conn->close();
+                  ?>
+  </div>
+ </body>
+</html>
+
+  <script type="text/javascript">
+  
+  $(document).ready(function() {
+     $("#submit").click(function(e){
+        e.preventDefault();
+        var invoker = $(this).data('id');
+        $.ajax({
+            type: "POST",
+            url: "../dashboard/btnclick.php",
+            data: { did: invoker },
+            success : function(data){
+            location.reload();
+          }
+           });
+       });
+     });
+
+</script>
