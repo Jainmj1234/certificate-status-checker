@@ -32,7 +32,7 @@ include 'connect.php';
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" href="tables.php">CERT-NSSCE</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -41,11 +41,12 @@ include 'connect.php';
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <!--  <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
           <div class="input-group-append">
             <button class="btn btn-primary" type="button">
               <i class="fas fa-search"></i>
             </button>
+          -->
           </div>
         </div>
       </form>
@@ -58,8 +59,7 @@ include 'connect.php';
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Activity Log</a>
+           <a class="dropdown-item" href="../ExcelUpload/index.php">Upload Excel-Sheet</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
           </div>
@@ -73,7 +73,7 @@ include 'connect.php';
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="tables.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </a>
@@ -81,24 +81,29 @@ include 'connect.php';
 
 
         <li class="nav-item active">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="#">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+            <span>Data's</span></a>
         </li>
       </ul>
 
       <div id="content-wrapper">
 
         <div class="container-fluid">
+  <?php 
+  $id=$_GET['id'];
+  ?>
 
           <!-- DataTables Example -->
    <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              Registered Students Data</div>
+              Students Data
+             </div>
+<p align="right"><input type = "button" class="btn btn-danger btn-block del" value="Click to delete this entry" data-id='<?php echo $id ?>'></p>
+
             <div class="card-body">
-  <?php 
-  $id=$_GET['id'];
+  <?php
   include 'connect.php';
   $sql="SELECT * FROM stdata WHERE `id`='". $id ."';";
   $result = $conn->query($sql);
@@ -131,11 +136,11 @@ echo "<td><input type='submit' id='submit' data-id='" .$row["id"]. "' class='btn
 
 
       </div>
+
       <!-- /.content-wrapper -->
 
     </div>
     <!-- /#wrapper -->
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
@@ -187,10 +192,28 @@ echo "<td><input type='submit' id='submit' data-id='" .$row["id"]. "' class='btn
      $("#submit").click(function(e){
         e.preventDefault();
         var invoker = $(this).data('id');
+        var act = "cha";
         $.ajax({
             type: "POST",
             url: "btnclick.php",
-            data: { did: invoker },
+            data: { did: invoker , act : act},
+            success : function(data){
+            location.reload();
+            window.location.href = "tables.php";
+          }
+           });
+       });
+     });
+
+  $(document).ready(function() {
+     $(".del").click(function(e){
+        e.preventDefault();
+        var invoker = $(this).data('id');
+        var act = "del";
+        $.ajax({
+            type: "POST",
+            url: "btnclick.php",
+            data: { did: invoker , act : act},
             success : function(data){
             location.reload();
             window.location.href = "tables.php";

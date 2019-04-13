@@ -56,10 +56,13 @@ body
   <div class="form-group">
   <label for="class"><b>Select the Semester</b></label>
   <select class="form-control" id="class">
+        <option value="S3">S3</option>
+        <option value="S4">S4</option>
         <option value="S5">S5</option>
         <option value="S6">S6</option>
         <option value="S7">S7</option>
         <option value="FY">Final Year</option>
+        <option value="MTECH">M-TECH</option>
   </select>
 </div>
   <div class="form-check">

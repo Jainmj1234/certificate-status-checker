@@ -1,7 +1,9 @@
-
 <?php 
+  $act ="";
   $id=$_POST['did'];
+  $act = $_POST['act'];
   include 'connect.php';
+  if($act != "del"){
   $sql="SELECT * FROM stdata WHERE `id`='". $id ."';";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
@@ -13,6 +15,10 @@ else {
   $sql="UPDATE stdata SET `status`=0 WHERE `id`='". $id ."';";
   $result = $conn->query($sql);
 }        
-
+}
+else{
+$sql="DELETE FROM stdata WHERE `id`='". $id ."';";
+$result = $conn->query($sql);
+}
 
  ?>

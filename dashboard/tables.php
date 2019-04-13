@@ -77,7 +77,7 @@ if (!isset($_SESSION["user"])){
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="index.php">
+          <a class="nav-link" href="tables.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
           </a>
@@ -85,9 +85,9 @@ if (!isset($_SESSION["user"])){
 
 
         <li class="nav-item active">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="#">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+            <span>Data's</span></a>
         </li>
       </ul>
 
@@ -100,7 +100,7 @@ if (!isset($_SESSION["user"])){
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Tables</li>
+            <li class="breadcrumb-item active">Data's</li>
           </ol>
 
           <!-- DataTables Example -->
@@ -110,7 +110,7 @@ if (!isset($_SESSION["user"])){
               Registered Students Data</div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTale" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -132,10 +132,10 @@ if (!isset($_SESSION["user"])){
                       <td>" . $row["regno"]. "</td>
                       <td>" . $row["class"]. "</td>";
                       if ($row['status'] != 1) {
-                          echo "<td><input type='submit' id='submit' data-id=" .$row["id"]. " class='btn btn-danger btn-block' value='Not Issued'></input></td>";
+                          echo "<td><input type='submit' data-id=" .$row["id"]. " class='btn btn-danger btn-block btnck' value='Not Issued'></input></td>";
                           }
                       else{
-                     echo "<td><input type='submit'  data-id=" .$row["id"]. " class='btn btn-primary btn-block' value='Issued' disabled></input></td>"; 
+                     echo "<td><input type='submit' data-id=" .$row["id"]. " class='btn btn-primary btn-block btn' value='Issued' disabled></input></td>"; 
                           }
                           }
           
@@ -217,13 +217,13 @@ if (!isset($_SESSION["user"])){
   <script type="text/javascript">
   
   $(document).ready(function() {
-     $("#submit").click(function(e){
+     $(".btnck").click(function(e){
         e.preventDefault();
         var invoker = $(this).data('id');
         $.ajax({
             type: "POST",
             url: "btnclick.php",
-            data: { did: invoker },
+            data: { did: invoker , act : "cha" },
             success : function(data){
             location.reload();
           }

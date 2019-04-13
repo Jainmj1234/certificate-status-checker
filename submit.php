@@ -13,7 +13,7 @@
     $regno=$_POST['regno'];
     }
     if(isset($uname) and isset($regno)) {
-    $sql="SELECT * FROM stdata WHERE name REGEXP '$uname' AND regno REGEXP '$regno' AND class = '$class';";
+    $sql="SELECT * FROM stdata WHERE name REGEXP '$uname' AND regno REGEXP '$regno' AND class REGEXP '$class';";
     $result = $conn->query($sql);
     $json = array();
     if ($result->num_rows == 0) {
