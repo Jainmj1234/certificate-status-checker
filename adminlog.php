@@ -1,4 +1,5 @@
 <?php 
+session_start();
     $errorMSG = "";
     include 'connect.php';
     if (empty($_POST["username"])) {
@@ -18,5 +19,6 @@
       echo json_encode(['code'=>404, 'msg'=>$errorMSG]);
     }else{
      echo json_encode(['code'=>111, 'msg'=>$errorMSG]);
+     $_SESSION["user"] = $uname;    
     }
 ?>

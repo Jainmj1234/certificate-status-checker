@@ -1,4 +1,9 @@
-
+<?php
+session_start();
+if(isset($_SESSION["user"])){
+  header("location:dashboard/tables.php");
+}
+?>
 <html>
 <head>
 
@@ -13,7 +18,14 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
-  
+  .box
+  {
+   width:inherit;
+   border:1px solid #ccc;
+   background-color:#fff;
+   border-radius:5px;
+   margin-top:10px;
+  }
 body
 { background-image:url("bck.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 </style>
@@ -146,15 +158,22 @@ body
                     }
                  else {
                     var details = '';
+                    details += '<div class="container box">';
                     details += "<center><b><u>Matched Data's Found</u></b></center>";
-                    details += '<table padding=3px width="100%"><tr width="100%"><th width="25%">Name</th><th width="25%">Register Number</th><th width="25%">Semester</th><th width="25%">Status</th></tr>';
+                    details += '<table class="table table-bordered" style="width:auto;text-align:center" padding=3px><tr width="100%"><th width="25%">Name</th><th width="25%">Register Number</th><th width="25%">Semester</th><th width="25%">Status</th></tr>';
                    $.each(data,function(key,value){
                       details += '<tr width="100%">';
                       details += '<td width="25%" width="25%" width="25%" width="25%">'+value.name+'</td>';
                       details += '<td width="25%" width="25%" width="25%">'+value.regno+'</td>';
                        details += '<td width="25%" width="25%">'+value.class+'</td>';
-                        details += '<td width="25%">'+value.status+'</td>';
-                        details += '</tr></table>';});
+                       if(value.status == null || value.status == 0){
+                        details += '<td width="25%"><b><i>Not Issued</i></b></td></tr>';
+                      }
+                      else{
+                        details += '<td width="25%"><b>Issued</b></td></tr>';
+                      }
+                        });
+                       details += '</tr></table></div>';
                     document.getElementById("statusContent").innerHTML=details;
                 }
             }
