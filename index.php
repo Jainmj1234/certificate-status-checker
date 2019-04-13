@@ -18,6 +18,10 @@ if(isset($_SESSION["user"])){
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
+  ul
+  {
+    list-style: none;
+  }
   .box
   {
    width:inherit;
@@ -27,7 +31,7 @@ if(isset($_SESSION["user"])){
    margin-top:10px;
   }
 body
-{ background-image:url("bck.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
+{ background-image:url("img/bck.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;opacity: .9;}
 </style>
 
 </head>
@@ -39,7 +43,9 @@ body
     <div class="alert alert-danger display-error" style="display: none">
     </div>
   <h1 align="center">Welcome</h1>      
-  <p align="center">Check your certificate status just by entering your username and password</p>
+  <p align="center"><b>Check your certificate status just by entering your NAME and Register Number</b></p>
+  <p>This page is created for checking certificates status of ELECTONICS AND COMMUNICATION passout students, NSS COLLEGE OF ENGINEERING</p>
+  <p>This page returns most matched data's with respect to the input given</p>
   <p align="right">
   <a href="" class="btn btn-info mb-4" data-toggle="modal" data-target="#modalLoginForm">Admin Login</a>
   </div>
@@ -47,7 +53,7 @@ body
 
 <form name="login" method="post" id="login">
   <div class="form-group">
-    <label for="username"><b>Username</b></label>
+    <label for="username"><b>Name</b></label>
     <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
   <div class="form-group">
     <label for="register"><b>Register Number</b></label>
@@ -65,15 +71,13 @@ body
         <option value="MTECH">M-TECH</option>
   </select>
 </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="check">
-    <label class="form-check-label" for="Check">Check me out</label>
-  </div>
+ <button type="reset" value="Clear Fields" name="reset" class="btn btn-default">Reset</button>
  <button type="submit" data-target="#statusModal" data-toggle="modal" class="btn btn-primary" name="submit">
   Check Status
 </button>
 </form>
   </div>
+  <p align="right">&copy;@MJ-Creations</p>
 </div>
 
 
@@ -116,19 +120,20 @@ body
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class="fa fa-user"></i>
-          <input type="text" name="usera" id="usera" class="form-control validate">
           <label data-error="wrong" data-success="right" for="defaultForm-email">Username</label>
+          <input type="text" name="usera" id="usera" class="form-control validate">
         </div>
 
         <div class="md-form mb-4">
           <i class="fa fa-lock"></i>
-          <input type="password" name="passa" id="passa" class="form-control validate">
           <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
+          <input type="password" name="passa" id="passa" class="form-control validate">
         </div>
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button type="submit" class="btn btn-default">Login</button>
+        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="submit" class="btn btn-primary">Login</button>
       </div>
       </form>
        <div class="alert alert-danger display-error_l" style="display: none">
@@ -158,6 +163,7 @@ body
                     $(".display-error").css("display","block");
                     result="Check the data's that you entered";
                     document.getElementById("statusContent").innerHTML=result;
+                    setTimeout(function() { location.reload(1);},2500);
                     }
                  else {
                     var details = '';
@@ -200,7 +206,9 @@ body
                     }
                  else {
                    $(".display-error_l").html("<ul>"+data.msg+"</ul>");
-                    $(".display-error_l").css("display","block");        
+                    $(".display-error_l").css("display","block");
+                    setTimeout(function() { location.reload(1);},2000);
+   
                 }
             }
         });
