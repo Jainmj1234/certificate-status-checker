@@ -6,18 +6,30 @@ if(isset($_SESSION["user"])){
 ?>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Certificate-Status</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet" />
+   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="script.js"></script>
-<script src="js/bootstrap.min.js"></script></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-<style>
+
+  <style>
+  .d-bck
+  {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.d-bdy{
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;}
+
   ul
   {
     list-style: none;
@@ -30,120 +42,93 @@ if(isset($_SESSION["user"])){
    border-radius:5px;
    margin-top:10px;
   }
+  .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 body
-{ background-image:url("img/bck.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;opacity: .9;}
+{ background-image:url("img/bck.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;opacity: .8;}
 </style>
 
 </head>
 
 <body>
 
-<div class="card text-center" style="width: 58rem; position: relative; margin: auto;">
-  <div class="card-header">
+
+<div class="container">
+  <div class="col-md-7 m-auto">
+    <span class="d-block d-bck">
     <div class="alert alert-danger display-error" style="display: none">
     </div>
-  <h1 align="center">Welcome</h1>      
-  <p align="center"><b>Check your certificate status just by entering your NAME and Register Number</b></p>
-  <p>This page is created for checking certificates status of ELECTONICS AND COMMUNICATION passout students, NSS COLLEGE OF ENGINEERING</p>
-  <p>This page returns most matched data's with respect to the input given</p>
-  <p align="right">
-  <a href="" class="btn btn-info mb-4" data-toggle="modal" data-target="#modalLoginForm">Admin Login</a>
-  </div>
-<div class="card-body">
-
-<form name="login" method="post" id="login">
-  <div class="form-group">
-    <label for="username"><b>Name</b></label>
-    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
-  <div class="form-group">
-    <label for="register"><b>Register Number</b></label>
-    <input type="text" class="form-control" name="regno" id="regno" placeholder="Register Number">
-  </div>
-  <div class="form-group">
-  <label for="class"><b>Select the Semester</b></label>
-  <select class="form-control" id="class">
-        <option value="S3">S3</option>
-        <option value="S4">S4</option>
-        <option value="S5">S5</option>
-        <option value="S6">S6</option>
-        <option value="S7">S7</option>
-        <option value="FY">Final Year</option>
-        <option value="MTECH">M-TECH</option>
-  </select>
-</div>
- <button type="reset" value="Clear Fields" name="reset" class="btn btn-default">Reset</button>
- <button type="submit" data-target="#statusModal" data-toggle="modal" class="btn btn-primary" name="submit">
-  Check Status
-</button>
-</form>
-  </div>
-  <p align="right">&copy;@MJ-Creations</p>
-</div>
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalLongTitle">Certificate Status</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <h4 class="form-header text-center">Welcome</h4>      
+        <p align="center"><b>Check your certificate status just by entering your NAME and Register Number</b></p>
+        <p align="center">This page is created for checking certificates status of ELECTONICS AND COMMUNICATION passout students, NSS COLLEGE OF ENGINEERING</p>
+        <p align="center" >This page returns most matched data's with respect to the input given</p>
+        <p align="right">
+        <a href="" class="btn btn-info mb-4" data-toggle="modal" data-target="#modalLoginForm">Admin Login</a></p>
+      </span>
+      <span class="d-block d-bdy text-center">
+      <div class="form-group text-left">
+        <h5 class="text-dark">Search for the Certificate-Status</h5>
+        <hr />
       </div>
-      <div class="modal-body" id="statusContent">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href='index.html'">Check Another</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Login Modal -->
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form name="adminlogin" method="post" id="adminlog">
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <i class="fa fa-user"></i>
-          <label data-error="wrong" data-success="right" for="defaultForm-email">Username</label>
-          <input type="text" name="usera" id="usera" class="form-control validate">
+      <div id="div1">
+        <form name="login" method="post" id="login">
+        <div class="form-group">
+          <i class="fa fa-user iconalign"></i> 
+          <label for="username"><b>Name</b></label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Enter Name">
+         </div>
+        <div class="form-group">
+          <i class="fa fa-credit-card iconalign"></i> 
+          <label for="register"><b>Register Number</b></label>
+          <input type="text" class="form-control" name="regno" id="regno" placeholder="Register Number">
+          </div>
+          <div class="form-group">
+            <label for="class"><b>Select the Semester</b></label>
+            <select class="form-control" id="class" style="padding-left:8px !important">
+              <option value="S3">S3</option>
+              <option value="S4">S4</option>
+              <option value="S5">S5</option>
+              <option value="S6">S6</option>
+              <option value="S7">S7</option>
+              <option value="FY">Final Year</option>
+              <option value="MTECH">M-TECH</option>
+            </select>
+          </div>
+          <hr />
+      <div class="row">
+        <div class="form-group col-md-6">
+          <button type="reset" value="reset" name="reset" class="btn btn-default">Clear Fields</button>
         </div>
-
-        <div class="md-form mb-4">
-          <i class="fa fa-lock"></i>
-          <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
-          <input type="password" name="passa" id="passa" class="form-control validate">
+        <div class="form-group col-md-6">
+          <button type="submit" data-target="#statusModal" data-toggle="modal" class="btn btn-lg btn-primary" name="submit">Check Status</button>
         </div>
-
       </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button type="reset" class="btn btn-default">Reset</button>
-        <button type="submit" class="btn btn-primary">Login</button>
-      </div>
-      </form>
-       <div class="alert alert-danger display-error_l" style="display: none">
-    </div>
-    </div>
+    </form>
   </div>
 </div>
-</body>
-
-
+</span>
 <script type="text/javascript">
   
   $(document).ready(function() {
@@ -167,9 +152,9 @@ body
                     }
                  else {
                     var details = '';
-                    details += '<div class="container box">';
+                    details += '<div style="overflow: auto" class="container-box">';
                     details += "<center><b><u>Matched Data's Found</u></b></center>";
-                    details += '<table class="table table-bordered" style="width:auto;text-align:center" padding=3px><tr width="100%"><th width="25%">Name</th><th width="25%">Register Number</th><th width="25%">Semester</th><th width="25%">Status</th></tr>';
+                    details += '<table class="table table-bordered" style="width:auto;text-align:center" padding=3px><tr width="100%"><th scope="col" width="25%">Name</th><th scope="col" width="25%">Register Number</th><th scope="col" width="25%">Semester</th><th width="25%" scope="col">Status</th></tr>';
                    $.each(data,function(key,value){
                       details += '<tr width="100%">';
                       details += '<td width="25%" width="25%" width="25%" width="25%">'+value.name+'</td>';
@@ -215,4 +200,65 @@ body
       });
   });
 </script>
+
+
+<!-- Login Modal -->
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form name="adminlogin" method="post" id="adminlog">
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fa fa-user"></i>
+          <label data-error="wrong" data-success="right" for="defaultForm-email">Username</label>
+          <input type="text" name="usera" id="usera" class="form-control validate">
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fa fa-lock"></i>
+          <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
+          <input type="password" name="passa" id="passa" class="form-control validate">
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+      </form>
+       <div class="alert alert-danger display-error_l" style="display: none">
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLongTitle">Certificate Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="statusContent">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='index.php'">Check Another</button>
+      </div>
+    </div>
+  </div>
+</div>
 </html>

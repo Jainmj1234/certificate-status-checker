@@ -33,7 +33,7 @@ if(isset($_POST["import"]))
    }
   } 
   $output .= '</table>';
-
+  header("location:lastrows.php?id=$la_id");
  }
  else
  {
@@ -68,19 +68,16 @@ if(isset($_POST["import"]))
  </head>
  <body>
   <div class="container box">
-   <h3 align="center">Import Excel to Mysql using PHPExcel in PHP</h3><br />
+   <h3 align="center">Add Excel Sheet to Database</h3><br />
+   <a href="../index.php"><button class="btn btn-info">Home</button></a><br>
    <form method="post" enctype="multipart/form-data">
     <label>Select Excel File</label>
     <input type="file" name="excel" />
     <br />
-    <input type="submit" name="import" class="btn btn-info" value="Import" />
+    <p align="center"><input type="submit" id="table" name="import" class="btn btn-primary" value="Import" /></p>
    </form>
    <br />
-   <br />
-   <?php
-   echo "<a href='lastrows.php?id=".$la_id."' alt='edit'>Edit Status</a>";
-   echo $output;
-   ?>
   </div>
  </body>
 </html>
+

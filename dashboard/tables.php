@@ -63,7 +63,7 @@ if (!isset($_SESSION["user"])){
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="../ExcelUpload/index.php">Upload Excel-Sheet</a>
-            <!--<a class="dropdown-item" href="#">Activity Log</a>-->
+            <a class="dropdown-item" href="quickedit.php">Quick Edit</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
           </div>
@@ -110,7 +110,7 @@ if (!isset($_SESSION["user"])){
               Registered Students Data</div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTale" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -159,7 +159,7 @@ if (!isset($_SESSION["user"])){
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>@mycreations</span>
+              <span>&copy;@MJ-Creations</span>
             </div>
           </div>
         </footer>

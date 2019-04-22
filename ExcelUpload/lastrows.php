@@ -25,6 +25,8 @@
  </head>
  <body>
   <div class="container box">
+    <h3 align="center">Data's Uploaded</h3><br />
+    <a href="../index.php"><button class="btn btn-info">Home</button></a><br>
   <table class='table table-bordered'>
                   <thead>
                     <tr>
@@ -45,14 +47,14 @@
              while($row = $result->fetch_assoc()) {
                 if($row["name"] !="" && $row["regno"] != "" && $row["name"] != "Name"){
                  echo "<tr>
-                      <td>" . $row["name"]. "  <a href='moredetail.php?id=".$row["id"]."' alt='edit'>(View Details)</a></td>
+                      <td>" . $row["name"]. "  <a href='#' data-id=" .$row["id"]. " class='del' alt='delete'>(Delete Row)</a></td>
                       <td>" . $row["regno"]. "</td>
                       <td>" . $row["class"]. "</td>";
                       if ($row['status'] != 1) {
-                          echo "<td><input type='submit' id='submit' data-id=" .$row["id"]. " class='btn btn-danger btn-block' value='Not Issued'></input></td>";
+                          echo "<td><input type='submit' id='submit' data-id=" .$row["id"]. " class='btn  btnck btn-danger btn-block' value='Not Issued'></input></td>";
                           }
                       else{
-                     echo "<td><input type='submit'  data-id=" .$row["id"]. " id='submit' class='btn btn-primary btn-block' value='Issued'></input></td>"; 
+                     echo "<td><input type='submit'  data-id=" .$row["id"]. " id='submit' class='btn  btnck btn-primary btn-block' value='Issued'></input></td>"; 
                           }
                           }
           
@@ -68,13 +70,29 @@
   <script type="text/javascript">
   
   $(document).ready(function() {
-     $("#submit").click(function(e){
+     $(".btnck").click(function(e){
         e.preventDefault();
         var invoker = $(this).data('id');
         $.ajax({
             type: "POST",
             url: "../dashboard/btnclick.php",
             data: { did: invoker },
+            success : function(data){
+            location.reload();
+          }
+           });
+       });
+     });
+
+  $(document).ready(function() {
+     $(".del").click(function(e){
+        e.preventDefault();
+        var invoker = $(this).data('id');
+        var act = "del";
+        $.ajax({
+            type: "POST",
+            url: "../dashboard/btnclick.php",
+            data: { did: invoker , act : act},
             success : function(data){
             location.reload();
           }

@@ -114,7 +114,7 @@ include 'connect.php';
     <tr><th>Register No.  :</th><td> " . $row['regno']. "</td></tr>
     <tr><th>Class    :</th><td> " . $row['class']. "</td></tr>
     <tr><th>Status    :</th>";
-    if ($row[status] != 1){
+    if ($row['status'] != 1){
        echo "<td><input type='submit' id='submit' data-id='" .$row["id"]. "' class='btn btn-danger btn-block' value='Not Issued'></input></td>";           
 }
 else{
@@ -199,7 +199,6 @@ echo "<td><input type='submit' id='submit' data-id='" .$row["id"]. "' class='btn
             data: { did: invoker , act : act},
             success : function(data){
             location.reload();
-            window.location.href = "tables.php";
           }
            });
        });
