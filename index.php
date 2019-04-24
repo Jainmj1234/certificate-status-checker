@@ -21,12 +21,14 @@ if(isset($_SESSION["user"])){
   <style>
   .d-bck
   {
-  background-color: rgba(0, 0, 0, 0.03);
+
+  padding: 0px 40px 20px 40px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 .d-bdy{
-  background-color: #fff;
+  background-color: #F7F3F3;
   background-clip: border-box;
+  padding: 0px 40px 20px 40px;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;}
 
@@ -62,6 +64,7 @@ if(isset($_SESSION["user"])){
   z-index: 1;
 }
 
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
@@ -76,8 +79,9 @@ body
 
 
 <div class="container">
-  <div class="col-md-7 m-auto">
-    <span class="d-block d-bck">
+  <div class="row shadow-lg bg-white rounded">
+  <div class="col-xl-12 m-auto">
+    <span class="d-block d-bck text-center">
     <div class="alert alert-danger display-error" style="display: none">
     </div>
       <h4 class="form-header text-center">Welcome</h4>      
@@ -87,11 +91,16 @@ body
         <p align="right">
         <a href="" class="btn btn-info mb-4" data-toggle="modal" data-target="#modalLoginForm">Admin Login</a></p>
       </span>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-md-12 m-auto">
       <span class="d-block d-bdy text-center">
       <div class="form-group text-left">
         <h5 class="text-dark">Search for the Certificate-Status</h5>
         <hr />
-      </div>
+        <div class="row">
+          <div class="col-md-7 m-auto">
       <div id="div1">
         <form name="login" method="post" id="login">
         <div class="form-group">
@@ -128,7 +137,10 @@ body
     </form>
   </div>
 </div>
+  </div>
 </span>
+</div>
+</div>
 <script type="text/javascript">
   
   $(document).ready(function() {
@@ -213,7 +225,8 @@ body
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form name="adminlogin" method="post" id="adminlog">
+      <span class="text-center">
+      <form name="adminlogin text-center" method="post" id="adminlog">
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class="fa fa-user"></i>
@@ -233,6 +246,7 @@ body
         <button type="submit" class="btn btn-primary">Login</button>
       </div>
       </form>
+    </span>
        <div class="alert alert-danger display-error_l" style="display: none">
     </div>
     </div>

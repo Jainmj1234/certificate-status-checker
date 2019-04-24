@@ -2,7 +2,7 @@
   $act ="";
   $id=$_POST['did'];
   $act = $_POST['act'];
-  include 'connect.php';
+  include '../connect.php';
   if($act != "del"){
   $sql="SELECT * FROM stdata WHERE `id`='". $id ."';";
   $result = $conn->query($sql);

@@ -1,5 +1,5 @@
 <?php
-  include("connect.php");
+  include("../connect.php");
   $sqll= "SELECT id FROM stdata ORDER by id DESC LIMIT 1;";
   $resultl = $conn->query($sqll);
   $rowl = $resultl->fetch_assoc();

@@ -39,7 +39,7 @@
                   <tbody>
                     
            <?php
-            include("connect.php");
+            include("../connect.php");
              $id=$_GET['id'];
              $sql = "SELECT * FROM stdata WHERE `id`>'". $id ."';";
              $result = $conn->query($sql);

@@ -39,7 +39,7 @@
                   <tbody>
                     
            <?php
-            include("connect.php");
+            include("../connect.php");
              $sql = "SELECT * FROM stdata ORDER by id DESC;";
              $result = $conn->query($sql);
              if ($result->num_rows > 0) {
