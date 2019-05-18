@@ -65,6 +65,7 @@ if (!isset($_SESSION["user"])){
             <a class="dropdown-item" href="../ExcelUpload/index.php">Upload Excel-Sheet</a>
             <a class="dropdown-item" href="quickedit.php">Quick Edit</a>
             <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="history.php">Search History</a>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
           </div>
         </li>

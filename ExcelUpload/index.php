@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(!isset($_SESSION["user"])){
+  header("location:../../index.php");
+}
+?>
+<?php
   include("../connect.php");
   $sqll= "SELECT id FROM stdata ORDER by id DESC LIMIT 1;";
   $resultl = $conn->query($sqll);
@@ -40,6 +46,7 @@ if(isset($_POST["import"]))
   $output = '<label class="ext-danger">Invalid File</label>'; //if non excel file then
  }
 }
+$conn->close();
 ?>
 
 <html>

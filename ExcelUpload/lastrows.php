@@ -1,4 +1,9 @@
-
+<?php
+session_start();
+if(!isset($_SESSION["user"])){
+  header("location:../../index.php");
+}
+?>
 <html>
  <head>
   <title>Import Excel to Mysql using PHPExcel in PHP</title>

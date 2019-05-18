@@ -22,13 +22,18 @@
     $json = array();
     if ($result->num_rows == 0) {
       $findError .= "<li>No matched data found ...</li>";
+      $stat = "Not found";
       echo json_encode(['code'=>404, 'msg'=>$findError]);
     }else{
+    $stat = "Found YEH!";
     while($row=mysqli_fetch_assoc($result)){
     $json[]=$row;
     }
     echo json_encode($json);
-    exit;
     }
+    $sql1="INSERT INTO entries(name, regno, class, status) VALUES ('".$uname."', '".$regno."', '".$class."', '".$stat."')";
+    $result1 = $conn->query($sql1);
+    $conn->close();
+    exit;
   }
 ?>

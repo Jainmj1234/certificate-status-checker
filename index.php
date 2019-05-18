@@ -77,10 +77,9 @@ body
 
 <body>
 
-
 <div class="container">
   <div class="row shadow-lg bg-white rounded">
-  <div class="col-xl-12 m-auto">
+  <div class="col-md-12">
     <span class="d-block d-bck text-center">
     <div class="alert alert-danger display-error" style="display: none">
     </div>
@@ -110,7 +109,8 @@ body
          </div>
         <div class="form-group">
           <i class="fa fa-credit-card iconalign"></i> 
-          <label for="register"><b>Register Number</b></label>
+          <label for="register"><b>Register Number</b></label>&nbsp&nbsp&nbsp&nbsp<i id="text">info</i>
+          <div id="pig" style="display:none"><div class="container"><p>If your register number is in the format NSACEECXXX ,try both NSACEECXXX and NSACEEC XXX</p></div></div>
           <input type="text" class="form-control" name="regno" id="regno" placeholder="Register Number">
           </div>
           <div class="form-group">
@@ -135,13 +135,24 @@ body
         </div>
       </div>
     </form>
+    </div>
   </div>
 </div>
-  </div>
+</div>
 </span>
 </div>
 </div>
+</div>
+
+
 <script type="text/javascript">
+
+
+  $('#text').mouseenter(function(){
+    $('#pig').fadeIn();
+   }).mouseleave(function(){
+    $('#pig').fadeOut();
+  });
   
   $(document).ready(function() {
       $('#login').submit(function(e){
@@ -275,4 +286,5 @@ body
     </div>
   </div>
 </div>
+</body>
 </html>
